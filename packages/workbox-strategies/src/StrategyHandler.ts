@@ -6,10 +6,6 @@
   https://opensource.org/licenses/MIT.
 */
 
-import {
-  allSettled,
-  PromiseRejection,
-} from 'workbox-core/_private/allSettled.js';
 import {assert} from 'workbox-core/_private/assert.js';
 import {cacheMatchIgnoreParams} from 'workbox-core/_private/cacheMatchIgnoreParams.js';
 import {Deferred} from 'workbox-core/_private/Deferred.js';
@@ -566,10 +562,10 @@ class StrategyHandler {
   async doneWaiting(): Promise<void> {
     while (this._extendLifetimePromises.length) {
       const promises = this._extendLifetimePromises.splice(0);
-      const result = await allSettled(promises);
+      const result = await Promise.allSettled(promises);
       const firstRejection = result.find((i) => i.status === 'rejected');
       if (firstRejection) {
-        throw (firstRejection as PromiseRejection).reason;
+        throw (firstRejection as PromiseRejectedResult).reason;
       }
     }
   }

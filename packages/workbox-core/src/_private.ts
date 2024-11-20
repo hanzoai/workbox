@@ -7,7 +7,6 @@
 */
 
 // We either expose defaults or we expose every named export.
-import {allSettled} from './_private/allSettled.js';
 import {assert} from './_private/assert.js';
 import {cacheNames} from './_private/cacheNames.js';
 import {cacheMatchIgnoreParams} from './_private/cacheMatchIgnoreParams.js';
@@ -26,7 +25,6 @@ import {WorkboxError} from './_private/WorkboxError.js';
 import './_version.js';
 
 export {
-  allSettled,
   assert,
   cacheMatchIgnoreParams,
   cacheNames,
