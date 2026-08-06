@@ -1,0 +1,11 @@
+# Canonical CI/CD config for hanzoai/workbox — read by hanzoai/ci (via
+# .hanzo/workflows/cicd.yml) and by platform.hanzo.ai.
+#
+# Library (npm, lerna packages). The gate is the real build — the gulp pipeline
+# that rolls up every workbox-* package into its published bundles — because
+# that is what breaks when a package's source or its cross-package imports
+# break. The node/integration suites drive a browser and a local server, so they
+# are not a code gate.
+test:
+  - name: build
+    run: npm ci --no-audit --no-fund && npm run build
